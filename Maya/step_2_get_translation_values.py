@@ -25,9 +25,9 @@ child_bone = cmds.xform(sel_bone[1], q=1, t=1, ws=1)
 
 # create a lsit in the same format as the SIMM joint file
 simm_joint_translation = [
-    ["tx", parent_bone[0] - child_bone[0]],
-    ["ty", parent_bone[1] - child_bone[1]],
-    ["tz", parent_bone[2] - child_bone[2]],
+    ["tx", "constant", parent_bone[0] - child_bone[0]],
+    ["ty", "constant", parent_bone[1] - child_bone[1]],
+    ["tz", "constant", parent_bone[2] - child_bone[2]],
     ["r1", "constant",  "0.000000"],
     ["r2", "constant",  "0.000000"],
     ["r3", "constant",  "0.000000"],
