@@ -46,7 +46,7 @@ simm_joint_orientation = [
 
 #have a popup diaglogue windows to indicatew where the .csv file is
 #alternatively, the document is saved to the default working directory where the Maya scene is
-filePath = cmds.fileDialog2(dialogStyle=2, fileMode =4)
+#filePath = cmds.fileDialog2(dialogStyle=2, fileMode =4)
 
 with open("mmatrix.csv", "a", newline = '') as file:
 	writer = csv.writer(file, delimiter = " ")
