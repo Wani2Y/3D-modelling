@@ -38,15 +38,16 @@ nested_list = list(mmatrix_for_simm)
 #restructure the list and drop the last row and column
 simm_joint_orientation = [
 	["joint_name", "x", "y", "z"],
+	["order", "t", "r3", "r2", "r1"],
 	["axis_1", nested_list[0], nested_list[1], nested_list[2]],
 	["axis_2", nested_list[4], nested_list[5], nested_list[6]],
 	["axis_3", nested_list[8], nested_list[9], nested_list[10]],
 ]
 
 #have a popup diaglogue windows to indicatew where the .csv file is
-#alternatively, the document is saved to the default working directory in Maya
-cmds.fileDialog2(dir='path/to/dir', dialogStyle=2, fileMode =4)
+#alternatively, the document is saved to the default working directory where the Maya scene is
+filePath = cmds.fileDialog2(dialogStyle=2, fileMode =4)
 
-with open("test.csv", "a", newline = '') as file:
-	writer = csv.writer(file)
+with open("mmatrix.csv", "a", newline = '') as file:
+	writer = csv.writer(file, delimiter = " ")
 	writer.writerows(simm_joint_orientation) 
