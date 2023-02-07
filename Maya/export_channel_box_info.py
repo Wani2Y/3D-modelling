@@ -3,8 +3,9 @@ title: "**Exporting Translation Values of Selected Objects**"
 project for: "Thesis!"
 author: "Wani2Y"
 first created: "10/09/2022"
-last modified: "16/01/2023"
+last modified: "06/02/2023"
 """
+#current version does not function properly if the joints are constrainted to objects
 
 # import Maya scripting library for Python
 import maya.cmds as cmds

@@ -44,9 +44,9 @@ simm_joint_orientation = [
 ]
 
 #have a popup diaglogue windows to indicatew where the .csv file is
+#alternatively, the document is saved to the default working directory in Maya
 cmds.fileDialog2(dir='path/to/dir', dialogStyle=2, fileMode =4)
 
-#alternatively, the document is saved to the default working directory in Maya
 with open("test.csv", "a", newline = '') as file:
 	writer = csv.writer(file)
 	writer.writerows(simm_joint_orientation) 
