@@ -26,6 +26,7 @@ def get_trans_MMatrix (ana_joint, world_joint):
 	world_joint_matrix = MMatrix(cmds.xform(world_joint, q=True, matrix=True, ws=True))
 	return (anatomical_joint_matrix * world_joint_matrix.inverse())
 
+#add the selected joints to two variables
 anatomical_joint = (cmds.ls(sl=1, sn=True))[0]
 world_oriented_joint = (cmds.ls(sl=1, sn=True))[1]
 
@@ -35,19 +36,22 @@ mmatrix_for_simm = get_trans_MMatrix(anatomical_joint, world_oriented_joint)
 #change MMatrix to list for slicing
 nested_list = list(mmatrix_for_simm)
 
+#round up the significant digits to 16, which is the default for SIMM
+
+
 #restructure the list and drop the last row and column
 simm_joint_orientation = [
-	["joint_name", "x", "y", "z"],
+	[anatomical_joint, "x", "y", "z"],
 	["order", "t", "r3", "r2", "r1"],
-	["axis_1", nested_list[0], nested_list[1], nested_list[2]],
-	["axis_2", nested_list[4], nested_list[5], nested_list[6]],
-	["axis_3", nested_list[8], nested_list[9], nested_list[10]],
+	["axis_1", f"{nested_list[0]:.16f}", f"{nested_list[1]:.16f}", f"{nested_list[2]:.16f}"],
+	["axis_2", f"{nested_list[4]:.16f}", f"{nested_list[5]:.16f}", f"{nested_list[6]:.16f}"],
+	["axis_3", f"{nested_list[8]:.16f}", f"{nested_list[9]:.16f}", f"{nested_list[10]:.16f}"],
 ]
 
-#have a popup diaglogue windows to indicatew where the .csv file is
-#alternatively, the document is saved to the default working directory where the Maya scene is
+#uncommented the following line to have a popup diaglogue windows to indicatew which .csv file to use
 #filePath = cmds.fileDialog2(dialogStyle=2, fileMode =4)
 
+#alternatively, the document is saved to the default working directory where the Maya scene is
 with open("mmatrix.csv", "a", newline = '') as file:
 	writer = csv.writer(file, delimiter = " ")
 	writer.writerows(simm_joint_orientation) 
