@@ -3,7 +3,7 @@ title: "**Exporting Axis Transformation of Different Joint Orientations**"
 project for: "SIMM modelling"
 author: "Wani2Y"
 first created: "06/02/2023"
-last modified: "06/02/2023"
+last modified: "18/02/2023"
 """
 
 """
@@ -16,7 +16,8 @@ tranlation in SIMM = (DFMO of the parent) - (DFWO of the child)
 import maya.cmds as cmds
 import csv
 
-# translate both parent and child bones to the world origin. Then first select the parent bone and then the child bone
+# creaete joints at pivots of bones to document translations. 
+# Then first select joint of the parent bone and then joint of the child bone
 sel_bone = cmds.ls(selection=True)
 
 # get the distances from the origin for both parent and child bones
@@ -25,9 +26,9 @@ child_bone = cmds.xform(sel_bone[1], q=1, t=1, ws=1)
 
 # create a lsit in the same format as the SIMM joint file
 simm_joint_translation = [
-    ["tx", "constant", parent_bone[0] - child_bone[0]],
-    ["ty", "constant", parent_bone[1] - child_bone[1]],
-    ["tz", "constant", parent_bone[2] - child_bone[2]],
+    ["tx", "constant", f"{(child_bone[0] - parent_bone[0]):.16f}"],
+    ["ty", "constant", f"{(child_bone[1] - parent_bone[1]):.16f}"],
+    ["tz", "constant", f"{(child_bone[2] - parent_bone[2]):.16f}"],
     ["r1", "constant",  "0.000000"],
     ["r2", "constant",  "0.000000"],
     ["r3", "constant",  "0.000000"],

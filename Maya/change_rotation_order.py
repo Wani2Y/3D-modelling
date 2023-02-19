@@ -20,4 +20,4 @@ MJoint_tlist = cmds.ls(type = "joint")
 
 #loop over all Mjoints to change the rotation order to the numeric order of the drop down list (3 for xzy)
 for joint in MJoint_list:
-	cmds.setAttr(joint + ".rotateOrder", 3)
+	cmds.setAttr(joint + ".rotateOrder", 0)
